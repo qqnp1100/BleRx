@@ -49,8 +49,8 @@ subscribe.unsubscribe();//取消扫描
 ```
 ###连接
 ```java
-BleRx.getInstance().connect("ff:ff:ff:ff:ff:ff", 10);
-//mac地址，重连时间(秒)
+BleRx.getInstance().connect("ff:ff:ff:ff:ff:ff", ff);
+//mac地址，重连时间
 ```
 ###断开
 ```java
@@ -78,4 +78,10 @@ subscribe.unsubscribe();//取消notify
 BleRx.getInstance().readRssi().subscribe(rssi->{
 
 });
+```
+###蓝牙状态
+```java
+BleRx.getInstance().bleState().subscribe(state -> {
+});
+subscribe.unsubscribe();//取消状态监听
 ```
