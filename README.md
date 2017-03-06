@@ -81,7 +81,7 @@ BleRx.getInstance().readRssi().subscribe(rssi->{
 ```
 ###蓝牙状态
 ```java
-BleRx.getInstance().bleState().subscribe(state -> {
+Subscription subscribe = BleRx.getInstance().bleState().subscribe(state -> {
 });
 subscribe.unsubscribe();//取消状态监听
 ```
