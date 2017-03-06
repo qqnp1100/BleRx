@@ -49,8 +49,8 @@ subscribe.unsubscribe();//取消扫描
 ```
 ###连接
 ```java
-BleRx.getInstance().connect("ff:ff:ff:ff:ff:ff", ff);
-//mac地址，重连时间
+BleRx.getInstance().connect("ff:ff:ff:ff:ff:ff", 10);
+//mac地址，重连时间(秒)
 ```
 ###断开
 ```java
