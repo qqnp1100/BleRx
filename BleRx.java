@@ -34,7 +34,7 @@ public class BleRx {
     private int autoTime = -1;
     private RxBleConnection rxBleConnection;
     private Map<String, List<Emitter<byte[]>>> notifyMaps;
-    private Emitter<BleState> stateEmitter;
+    private List<Emitter<BleState>> stateEmitters;
     private BleState bleState = BleState.DISCONNECT;
     private Subscription connectSub;
     private Subscription autoSub;
@@ -46,6 +46,7 @@ public class BleRx {
         rxBleClient = RxBleClient.create(context);
         notifyMaps = new HashMap<>();
         notifySubList = new ArrayList<>();
+        stateEmitters=new ArrayList<>();
     }
 
     public static void init(Context context) {
@@ -125,14 +126,18 @@ public class BleRx {
 
     public Observable<BleState> bleState() {
         return Observable.create((Action1<Emitter<BleState>>) emitter -> {
-            stateEmitter = null;
-            stateEmitter = emitter;
+            emitter.setCancellation(()->{
+                stateEmitters.remove(emitter);
+            });
+            stateEmitters.add(emitter);
         }, Emitter.BackpressureMode.BUFFER)
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
     private void sendState(BleState s) {
-        stateEmitter.onNext(s);
+        for (Emitter<BleState> stateEmitter : stateEmitters) {
+            stateEmitter.onNext(s);
+        }
     }
 
     public void write(UUID uuid, byte[] data) {
