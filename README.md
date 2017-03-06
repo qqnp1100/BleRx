@@ -1,35 +1,36 @@
 #BleRx
 ##配置
-1. RxAndroidBle
-```java
-compile "com.polidea.rxandroidble:rxandroidble:1.1.0"
-```
+1. RxAndroidBle  
+    ```java
+    compile "com.polidea.rxandroidble:rxandroidble:1.1.0"
+    ```
 2. lambda语法配置
-    * 根目录build.gradle
-```java
-    dependencies {
-        classpath 'me.tatarka:gradle-retrolambda:3.1.0'
-    }
-```
-    * 项目build.gradle
-```java
-android {
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-    allprojects {
-        repositories {
-            maven {
-                url "https://jitpack.io"
-            }
+* 根目录build.gradle
+    ```java
+        dependencies {
+         classpath 'me.tatarka:gradle-retrolambda:3.1.0'
+     }
+    ```
+* 项目build.gradle
+    ```java
+    android {
+        compileOptions {
+            sourceCompatibility JavaVersion.VERSION_1_8
+            targetCompatibility JavaVersion.VERSION_1_8
         }
-        apply plugin: 'me.tatarka.retrolambda'
+        allprojects {
+            repositories {
+                maven {
+                    url "https://jitpack.io"
+                }
+            }
+            apply plugin: 'me.tatarka.retrolambda'
+        }
     }
-}
-```
+    ```
 
 ##使用
+直接复制BleRx到项目中使用
 ###初始化
 在Application的onCreate()中
 ```java
