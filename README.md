@@ -1,4 +1,5 @@
 #BleRx
+对rxandroidble的操作封装,适用于只连一个设备,只要数据的收发等基本功能
 ##配置
 ####RxAndroidBle  
 ```java
